@@ -1,4 +1,9 @@
-#include "../lib/testlib.h"
+/*
+	40%: 1<=m,n<=20
+	60%: m,n<=1000
+*/
+
+#include "../../lib/testlib.h"
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -25,12 +30,14 @@ void genTest(int id, int m, int n){
 	int minAnswer = rnd.next( max(m,n), m+n );
 	int mm = rnd.next(minAnswer-n, m);
 	int nn = minAnswer - mm;
+	bool kill_greedy = rnd.next(3)==0;
+	
 	for(int i=1; i<=m; ++i)
 	for(int j=1; j<=n; ++j)
-		if (i<=mm && j<=nn)
+		if ( (i<=mm && j<=nn) || (kill_greedy && i==mm+1 && j>n-nn-2) )
 			a[i][j] = 1;
 		else
-			if (rnd.next(5)==0) a[i][j]=1;
+			if (rnd.next(5)==0) a[i][j]=1;	
 	
 	//Random permutation
 	for(int i=1; i<=m; ++i)
