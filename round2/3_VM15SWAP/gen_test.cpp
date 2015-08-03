@@ -49,10 +49,10 @@ void genTest(int id, int m, int n){
 	ofstream fi(PATH+getString(id)+".in");	
 	fi << m << " " << n << "\n";
 	const char *ss = " \n";
-	for(int i=1; i<=m; ++i){
-		for(int j=1; j<=n; ++j) fi << a[i][j] << ss[(int)(j==n)];
-		fi << endl;
-	}
+	for(int i=1; i<=m; ++i)
+		for(int j=1; j<=n; ++j) 
+			fi << a[i][j] << ss[(int)(j==n)];
+	
 	fi.close();
 	
 	cerr << "Test #" << " " << id <<  endl;
