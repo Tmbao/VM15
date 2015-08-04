@@ -1,5 +1,27 @@
+/* 
+ 	Ouput format:
+
+	if (x0+y0 > max(m,n))
+		x0 y0
+		num swap
+		R i j (swapRow(i,j)) or 
+		C i j (swapCol(i,j))
+
+	if (x0+y0 <= max(m,n)) should output "0 0"
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
+
+struct Result{
+	char type; int i, j;
+	Result(char type, int i, int j) : type(type), i(i), j(j) {}
+};
+
+ostream& operator << (ostream& os, const Result& r){
+	os << r.type << " " << r.i << " " << r.j;
+	return os;
+}
 
 const int limit = 1000 + 5;
 int a[limit][limit];
@@ -56,19 +78,30 @@ void print(){
 				result_x.erase(i);
 			}		
 		}
-		
-	for(int i: result_x)
-	for(int j: result_y) assert(a[i][j]==0);
-			
+
+	if ( (int)(result_x.size() + result_y.size()) <= max(m,n) ){
+		cout << "0 0\n";
+		return;
+	}
+
+	vector<Result> result;
+	set<int> :: iterator p;
+	p = result_x.begin();
+	for(int i=0; i<(int)result_x.size(); ++i, ++p)
+		result.push_back( Result('R', i+1, (*p)+1 ) );
+	
+	p = result_y.begin();
+	for(int i=0; i<(int)result_y.size(); ++i, ++p)
+		result.push_back( Result('C', (*p)+1, i+1 ) );
+
+	cout << result_x.size() << " " << result_y.size() << "\n";
+	cout << result.size() << "\n";
+	for(int i=0; i<(int)result.size(); ++i)
+		cout << result[i] << "\n";
 }
 
 int main(){
-	using namespace chrono;
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	input();
 	matching();
 	print();
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);	
-	cerr << time_span.count() << endl;
 }
