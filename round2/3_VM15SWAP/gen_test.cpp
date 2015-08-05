@@ -1,7 +1,8 @@
 /*
  	Compile with C++11
-	40%: 1<=m,n<=20
-	60%: m,n<=1000
+	Example: 0, 21
+	Test 1-8: 1<=m,n<=20
+	Test 9-20: m,n<=1000
 */
 
 #include "../../lib/testlib.h"
@@ -38,7 +39,7 @@ void genTest(int id, int m, int n){
 		if ( (i<=mm && j<=nn) || (kill_greedy && i==mm+1 && j>n-nn-2) )
 			a[i][j] = 1;
 		else
-			if (rnd.next(5)==0) a[i][j]=1;	
+			if (rnd.next(3)==0) a[i][j]=1;	
 	
 	//Random permutation
 	for(int i=1; i<=m; ++i)
@@ -68,9 +69,15 @@ void genSubtask(int from, int to, int loN, int hiN){
 		);
 }
 
+void genExample(){
+	genTest(0,3,3);
+	genTest(21,2,2);
+}
+
 int main(){
 	rnd.setSeed(123456789);
 	system("mkdir tests");
+	genExample();
 	genSubtask(1,8,1,20);
 	genSubtask(9,18,200, 1000);	
 	genSubtask(19,20,1000,1000);
