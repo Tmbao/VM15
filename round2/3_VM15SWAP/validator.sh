@@ -1,4 +1,4 @@
-for i in {1..20}
+for i in {0..21}
 do
 	echo "Test $i"
 	./validator < "tests/$i.in"

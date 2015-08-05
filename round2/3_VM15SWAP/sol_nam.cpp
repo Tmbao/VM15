@@ -88,11 +88,13 @@ void print(){
 	set<int> :: iterator p;
 	p = result_x.begin();
 	for(int i=0; i<(int)result_x.size(); ++i, ++p)
-		result.push_back( Result('R', i+1, (*p)+1 ) );
+		if (i != (*p))
+			result.push_back( Result('R', i+1, (*p)+1 ) );
 	
 	p = result_y.begin();
 	for(int i=0; i<(int)result_y.size(); ++i, ++p)
-		result.push_back( Result('C', (*p)+1, i+1 ) );
+		if (i != (*p))
+			result.push_back( Result('C', (*p)+1, i+1 ) );
 
 	cout << result_x.size() << " " << result_y.size() << "\n";
 	cout << result.size() << "\n";
