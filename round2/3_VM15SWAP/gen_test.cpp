@@ -26,7 +26,7 @@ void swapCol(int i, int j, int m){
 	for(int k=1; k<=m; ++k) swap(a[k][i], a[k][j]);
 }
 
-void genTest(int id, int m, int n){
+void genTest(int id, int m, int n, bool isExample = false){
 	memset(a, 0, sizeof a);
 	
 	int minAnswer = rnd.next( max(m,n), m+n );
@@ -47,6 +47,7 @@ void genTest(int id, int m, int n){
 	for(int i=1; i<=n; ++i)
 		swapCol(i, rnd.next(1,i), m);
 	
+	if (isExample) a[1][1] = 0;
 	
 	ofstream fi(PATH+getString(id)+".in");	
 	fi << m << " " << n << "\n";
@@ -70,8 +71,8 @@ void genSubtask(int from, int to, int loN, int hiN){
 }
 
 void genExample(){
-	genTest(0,3,3);
-	genTest(21,2,2);
+	genTest(0,3,3,true);
+	genTest(21,3,1,true);
 }
 
 int main(){
