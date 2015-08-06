@@ -1,3 +1,4 @@
 tests/
 validator
 a.out
+*.exe

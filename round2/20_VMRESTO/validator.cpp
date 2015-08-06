@@ -11,7 +11,7 @@ int main(){
 	for(int i=0; i<n; ++i)
 		for(int j=0; j<n; ++j){
 			if (i==j)
-				inf.readChar('?');
+				inf.readLong(0,0);
 			else
 				inf.readLong(-MAX_VALUE, MAX_VALUE);
 
