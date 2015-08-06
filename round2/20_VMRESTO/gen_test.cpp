@@ -1,5 +1,6 @@
 /*
- 	Test 1-12: -2000 <= a[i][j] <= 2000
+ 	Test 1-4: N is even
+	Test 5-12: -2000 <= a[i][j] <= 2000
 	Test 13-20: -1e12 <= a[i][j] <= 1e12
 */
 #include "../../lib/testlib.h"
@@ -22,7 +23,7 @@ void printTest(int id){
 	fi << n << "\n";
 	for(int i=1; i<=n; ++i){
 		for(int j=1; j<=n; ++j){
-			if (i==j) fi << "?";
+			if (i==j) fi << "0";
 			else fi << a[i][j];
 
 			if (j<n) fi<<" "; else fi<<"\n";
@@ -118,10 +119,10 @@ void genBoard(long long minValue, long long maxValue){
 	}
 }
 
-void genTest(int id, int minN, int maxN, long long minValue, long long maxValue, bool canEven=true){
+void genTest(int id, int minN, int maxN, long long minValue, long long maxValue, int module2=1){
 	do{
 		n = rnd.next(minN, maxN);
-	} while (n%2==0 && !canEven);
+	} while (n%2!=module2);
 
 	do{
 		genBoard(minValue, maxValue);
@@ -131,10 +132,10 @@ void genTest(int id, int minN, int maxN, long long minValue, long long maxValue,
 }
 
 int main(){
-	rnd.setSeed(123456789);
-	string command = "mkdir "+PATH;
-	system(command.c_str());
+	rnd.setSeed(123456789);	
+	system("mkdir tests");
 	genExample();
-	for(int i=1; i<=12; ++i) genTest(i, 4, 100, -100, 100);
-	for(int i=13; i<=20; ++i) genTest(i, 50, 100, -MAX_VALUE, MAX_VALUE, false);
+	for(int i=1; i<=4; ++i) genTest(i, 4, 100, -100000, 100000, 0);
+	for(int i=5; i<=12; ++i) genTest(i, 4, 100, -100, 100);
+	for(int i=13; i<=20; ++i) genTest(i, 50, 100, -MAX_VALUE, MAX_VALUE);
 }
