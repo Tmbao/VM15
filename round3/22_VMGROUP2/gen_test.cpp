@@ -51,9 +51,8 @@ void init_composite(){
 }
 
 int main(){
-	init_composite();
 	rnd.setSeed(123456789);
-	mkdir("tests");	
+	system("mkdir tests");
 	genExample();
 	for(int i=1; i<60; ++i){
 		int type = rnd.next(10);
