@@ -15,10 +15,10 @@ int a[MAX_N][MAX_N];
 int group[MAX_N];
 
 void read_input() {
-	fscanf(spoj_p_in, "%d %d %d", &n, &m, &k);
+	fscanf(spoj_p_in, "%d%d%d", &n, &m, &k);
 	while (m--) {
 		int i, j;
-		fscanf(spoj_p_in, "%d %d", &i, &j);
+		fscanf(spoj_p_in, "%d%d", &i, &j);
 		a[i][j] = a[j][i] = 1;
 	}
 }
@@ -31,7 +31,7 @@ int read_output() {
 	
 	//read output group
 	for(int i = 1; i <= k; ++i) {
-        for (int j = 1; j <= n/k; j++) {
+        for (int j = 1; j <= n / k; j++) {
             int value;
             spoj_assert(fscanf(spoj_t_out, "%d", &value) == 1);
             spoj_assert(1 <= value && value <= n);
@@ -40,7 +40,7 @@ int read_output() {
         }
 
         char dummy;
-        fscanf(spoj_t_out, "%c", dummy);
+        fscanf(spoj_t_out, "%c", &dummy);
         spoj_assert(i == k || dummy == '\n');
 	}
 	
