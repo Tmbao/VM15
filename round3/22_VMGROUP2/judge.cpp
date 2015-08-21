@@ -40,7 +40,13 @@ int read_output() {
         }
 
         char dummy;
-        fscanf(spoj_t_out, "%c", &dummy);
+        while (true) {
+            int status = fscanf(spoj_t_out, "%c", &dummy);
+            if (status == -1)
+                if (i == k) break;
+                else dummy = 0;
+            if (dummy != ' ') break;
+        }
         spoj_assert(i == k || dummy == '\n');
 	}
 	
@@ -63,6 +69,6 @@ int main() {
 	check_output_score(output_score);
 	
 	int sol_score; fscanf(spoj_p_out, "%d", &sol_score);
-	double score = 1. * (sol_score+1) / (output_score+1);		
+	double score = 1. * (sol_score + 1.0) / (output_score+1);		
 	fprintf(spoj_score, "%.6f", score);
 }
