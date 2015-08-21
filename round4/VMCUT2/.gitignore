@@ -1,0 +1,5 @@
+tests/
+*.exe
+sol_nam_random
+gen_test
+validator
