@@ -77,6 +77,7 @@ void check(int i){
 }
 
 int main(){
+	spoj_init();
 	input();
 	loadOutput();
 	for(int i=1; i<=n; ++i) check(i);
